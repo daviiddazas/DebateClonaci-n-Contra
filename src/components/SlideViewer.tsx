@@ -14,6 +14,8 @@ import {
   Sparkles,
   Link as LinkIcon,
   Eye,
+  Lock,
+  CheckCircle,
 } from 'lucide-react';
 
 import { formatMediaUrl, isYoutubeUrl, isDirectVideoUrl, getYoutubeEmbedUrl } from '../utils/mediaUtils';
@@ -27,6 +29,8 @@ interface SlideViewerProps {
   onOpenLightbox: () => void;
   onClosePanel?: () => void;
   onUpdateSlide?: (motiveId: number, subIndex: number, updatedFields: Partial<SubSlide>) => void;
+  isEditingAllowed?: boolean;
+  onCompileAndLock?: () => void;
 }
 
 export const SlideViewer: React.FC<SlideViewerProps> = ({
@@ -38,6 +42,8 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
   onOpenLightbox,
   onClosePanel,
   onUpdateSlide,
+  isEditingAllowed = true,
+  onCompileAndLock,
 }) => {
   // Editing state
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -167,7 +173,12 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
             </span>
           )}
 
-          {isEditing ? (
+          {!isEditingAllowed ? (
+            <span className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 shadow-xs">
+              <Lock className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+              <span>Contenido Fijo y Compilado</span>
+            </span>
+          ) : isEditing ? (
             <>
               <button
                 onClick={handleSave}
@@ -175,8 +186,19 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
                 title="Guardar y fijar cambios en esta diapositiva"
               >
                 <Save className="w-3.5 h-3.5" />
-                <span>Guardar Cambios</span>
+                <span>Guardar</span>
               </button>
+
+              {onCompileAndLock && (
+                <button
+                  onClick={onCompileAndLock}
+                  className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs shadow-md transition-all active:scale-95"
+                  title="Compilar permanentemente en el código y bloquear modificaciones"
+                >
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span>Compilar y Bloquear</span>
+                </button>
+              )}
 
               <button
                 onClick={handleResetOriginal}
@@ -196,14 +218,27 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
               </button>
             </>
           ) : (
-            <button
-              onClick={() => setIsEditing(true)}
-              className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-xs shadow-md transition-all hover:scale-105 active:scale-95"
-              title="Habilitar edición de textos, tesis y títulos"
-            >
-              <Edit3 className="w-3.5 h-3.5" />
-              <span>Editar Textos</span>
-            </button>
+            <div className="flex items-center gap-2">
+              <button
+                onClick={() => setIsEditing(true)}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-xs shadow-md transition-all hover:scale-105 active:scale-95"
+                title="Habilitar edición de textos, tesis y títulos"
+              >
+                <Edit3 className="w-3.5 h-3.5" />
+                <span>Editar Textos</span>
+              </button>
+
+              {onCompileAndLock && (
+                <button
+                  onClick={onCompileAndLock}
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-purple-600 hover:bg-purple-500 text-white font-extrabold text-xs shadow-md transition-all hover:scale-105 active:scale-95"
+                  title="Compilar datos en el código fuente y fijar presentación"
+                >
+                  <CheckCircle className="w-3.5 h-3.5" />
+                  <span>Compilar en Código</span>
+                </button>
+              )}
+            </div>
           )}
 
           {/* Close Button */}

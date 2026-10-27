@@ -1,4 +1,5 @@
 import { Speaker, MainMotive } from '../types';
+import compiledMotives from './compiledMotives.json';
 
 export const SPEAKERS: Record<string, Speaker> = {
   david: {
@@ -59,7 +60,7 @@ export const SPEAKERS: Record<string, Speaker> = {
   },
 };
 
-export const INITIAL_MOTIVES: MainMotive[] = [
+export const DEFAULT_MOTIVES: MainMotive[] = [
   {
     id: 1,
     number: '01',
@@ -541,3 +542,8 @@ export const INITIAL_MOTIVES: MainMotive[] = [
     ],
   },
 ];
+
+export const INITIAL_MOTIVES: MainMotive[] =
+  (Array.isArray(compiledMotives) && compiledMotives.length === 4)
+    ? (compiledMotives as unknown as MainMotive[])
+    : DEFAULT_MOTIVES;

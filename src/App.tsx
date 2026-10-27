@@ -14,7 +14,7 @@ import { CredentialLightbox } from './components/CredentialLightbox';
 import { DebateHeader } from './components/DebateHeader';
 import { ReferenceModal } from './components/ReferenceModal';
 import { BottomControlDock } from './components/BottomControlDock';
-import { Eye } from 'lucide-react';
+import { Eye, CheckCircle, Lock } from 'lucide-react';
 
 export default function App() {
   const [themeMode, setThemeMode] = useState<ThemeMode>(() => {
@@ -51,11 +51,62 @@ export default function App() {
   });
   const speakersData: Record<string, Speaker> = SPEAKERS;
 
+  const [isEditingLocked, setIsEditingLocked] = useState<boolean>(() => {
+    return localStorage.getItem('oicrv_compilation_locked') === 'true';
+  });
+  const [compiledSuccessToast, setCompiledSuccessToast] = useState<boolean>(false);
+
   useEffect(() => {
     try {
       localStorage.setItem('oicrv_custom_motives', JSON.stringify(motives));
     } catch {}
   }, [motives]);
+
+  // Auto-sync client changes on mount: bake them permanently into compiledMotives.json via backend API
+  useEffect(() => {
+    const custom = localStorage.getItem('oicrv_custom_motives');
+    if (custom) {
+      try {
+        const parsed = JSON.parse(custom);
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          fetch('/api/compile-motives', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ motives: parsed }),
+          })
+            .then((r) => r.json())
+            .then((data) => {
+              if (data.success) {
+                localStorage.setItem('oicrv_compilation_locked', 'true');
+                setIsEditingLocked(true);
+                setCompiledSuccessToast(true);
+                setTimeout(() => setCompiledSuccessToast(false), 5000);
+              }
+            })
+            .catch(() => {});
+        }
+      } catch {}
+    }
+  }, []);
+
+  const handleCompileAndLock = async () => {
+    try {
+      const res = await fetch('/api/compile-motives', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ motives }),
+      });
+      const data = await res.json();
+      if (data.success) {
+        localStorage.setItem('oicrv_compilation_locked', 'true');
+        setIsEditingLocked(true);
+        setCompiledSuccessToast(true);
+        setTimeout(() => setCompiledSuccessToast(false), 5000);
+      }
+    } catch (err) {
+      console.error('Error compiling motives:', err);
+    }
+  };
 
   const handleUpdateSlide = (motiveId: number, subIndex: number, updatedFields: Partial<SubSlide>) => {
     setMotives((prevMotives) =>
@@ -160,6 +211,8 @@ export default function App() {
                 onOpenLightbox={() => setIsLightboxOpen(true)}
                 onClosePanel={() => setIsWindowOpen(false)}
                 onUpdateSlide={handleUpdateSlide}
+                isEditingAllowed={!isEditingLocked}
+                onCompileAndLock={handleCompileAndLock}
               />
             )}
           </div>
@@ -215,6 +268,14 @@ export default function App() {
         onClose={() => setIsReferenceModalOpen(false)}
         isDarkMode={themeMode === 'dark'}
       />
+
+      {/* Floating toast when data is compiled and locked */}
+      {compiledSuccessToast && (
+        <div className="fixed top-20 right-6 z-50 flex items-center gap-2.5 px-4 py-3 rounded-2xl bg-emerald-600 text-white font-bold text-xs sm:text-sm shadow-2xl animate-in fade-in slide-in-from-top-4 border border-emerald-400">
+          <CheckCircle className="w-5 h-5 shrink-0" />
+          <span>Información compilada y fijada permanentemente en el código. Edición bloqueada.</span>
+        </div>
+      )}
     </div>
   );
 }
