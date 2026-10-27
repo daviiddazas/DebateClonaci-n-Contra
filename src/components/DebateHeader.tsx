@@ -14,6 +14,7 @@ import {
   Award,
   ChevronRight
 } from 'lucide-react';
+import { formatMediaUrl } from '../utils/mediaUtils';
 
 interface DebateHeaderProps {
   themeMode: ThemeMode;
@@ -167,9 +168,17 @@ export const DebateHeader: React.FC<DebateHeaderProps> = ({
                   : 'bg-white border-slate-300 hover:border-cyan-600 text-slate-900 shadow-xs'
               }`}
             >
-              <div className={`w-5 h-5 rounded-full bg-gradient-to-tr ${speaker.avatarColor} flex items-center justify-center text-white text-[10px] font-bold`}>
-                {speaker.name.charAt(0)}
-              </div>
+              {speaker.photoUrl ? (
+                <img
+                  src={formatMediaUrl(speaker.photoUrl)}
+                  alt={speaker.name}
+                  className="w-5 h-5 rounded-full object-cover border border-cyan-500/40 shrink-0"
+                />
+              ) : (
+                <div className={`w-5 h-5 rounded-full bg-gradient-to-tr ${speaker.avatarColor} flex items-center justify-center text-white text-[10px] font-bold shrink-0`}>
+                  {speaker.name.charAt(0)}
+                </div>
+              )}
               <span className="font-bold text-[11px]">{speaker.name}</span>
               <span className="text-[10px] font-mono text-cyan-700 dark:text-cyan-400 font-semibold hidden md:inline">({speaker.title.split(' ')[0]})</span>
             </button>

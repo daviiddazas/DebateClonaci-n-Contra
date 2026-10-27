@@ -13,6 +13,7 @@ import {
   X,
   GraduationCap
 } from 'lucide-react';
+import { formatMediaUrl } from '../utils/mediaUtils';
 
 interface OrganizationPanelProps {
   isDarkMode: boolean;
@@ -109,7 +110,7 @@ export const OrganizationPanel: React.FC<OrganizationPanelProps> = ({
                 <div className="flex items-center gap-3 mb-2.5">
                   {spk.photoUrl ? (
                     <img
-                      src={spk.photoUrl}
+                      src={formatMediaUrl(spk.photoUrl)}
                       alt={spk.name}
                       className="w-12 h-12 rounded-xl object-cover shadow-md shrink-0 border border-cyan-500/40"
                     />

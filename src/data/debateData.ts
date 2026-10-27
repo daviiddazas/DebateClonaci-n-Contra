@@ -13,7 +13,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Universidad de Oxford / Instituto Roslin de Investigación',
     diplomaText: 'Acreditación Oficial en Transferencia Nuclear Somática (SCNT), Embriología Médica Comparada y Análisis de Riesgos Reproductivos.',
     signatureTitle: 'Director de Riesgos Biotecnológicos',
-    photoUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/Credencial%20Daza.jpeg?raw=true',
+    photoUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/Credencial%20Daza.jpeg',
   },
   laura: {
     id: 'laura',
@@ -27,7 +27,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Universidad de Cambridge / Instituto Wellcome Trust',
     diplomaText: 'Cátedra de Investigación en Biología del Desarrollo Celular, Modelos de Pluripotencia Inducida (iPSC) y Bioética de Cultivos Embrionarios.',
     signatureTitle: 'Directora de Investigación Biomédica',
-    photoUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/Credencial%20villanueva.jpeg?raw=true',
+    photoUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/Credencial%20villanueva.jpeg',
   },
   fabian: {
     id: 'fabian',
@@ -41,7 +41,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Universidad Sorbona de París / Instituto de Bioética Global',
     diplomaText: 'Especialista en Derechos Humanos de Tercera Generación, Filosofía del Genoma, Autonomía Biográfica y Normativa Internacional UNESCO.',
     signatureTitle: 'Director de Ética y Asuntos Sociales',
-    photoUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/Credencial%20Galvis.jpeg?raw=true',
+    photoUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/Credencial%20Galvis.jpeg',
   },
   consejo: {
     id: 'consejo',
@@ -55,7 +55,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Mesa Plenaria Internacional OICRV',
     diplomaText: 'Dictamen Colectivo Interdisciplinario sobre Implicaciones Jurídicas, Clínicas y Morales de la Clonación Reproductiva Humana.',
     signatureTitle: 'Consejo Científico y Ético OICRV',
-    photoUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=500&auto=format&fit=crop&q=80',
+    photoUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/Imagen%20portada.jpg',
   },
 };
 
@@ -84,7 +84,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'En el experimento histórico de Dolly (1996), se requirieron 277 embriones clonados para obtener tan solo 1 nacimiento vivo (0.36% de eficiencia global).',
         evidenceSummary: 'De 277 embriones reconstruidos por SCNT, el 99.64% se detuvo en desarrollo o pereció intrauterinamente con fallas multiorgánicas.',
         evidenceGraphicType: 'dolly_efficiency',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%201.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%201.png',
         evidenceData: {
           type: 'comparison',
           title: 'Eficiencia Reproductiva: Oveja Dolly (1996)',
@@ -109,7 +109,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'En el primer protocolo de Liao et al. (Nature Comm., 2024), 484 embriones implantados en 96 macacas receptoras produjeron un solo nacido que murió en menos de 23 horas.',
         evidenceSummary: 'Tras optimizar con reemplazo de trofoblasto placentario, se activaron 113 embriones y se logró 1 cría sana: una tasa de éxito de solo 0.88% (1 en 113).',
         evidenceGraphicType: 'liao_primate_study',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%202.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%202.png',
         evidenceData: {
           type: 'bar',
           title: 'Estudio SCNT en Macacos Rhesus (Liao et al., 2024)',
@@ -136,7 +136,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'El National Research Council (NRC, 2002) alertó sobre desregulaciones placentarias graves, hemorragias y riesgos perinatales severos para la madre.',
         evidenceSummary: 'En perros, Olsson et al. (2022) lograron >2% en más de 1000 caninos pero con divergencias fenotípicas. Trasladar tales incertidumbres a seres humanos es bioéticamente inaceptable.',
         evidenceGraphicType: 'maternal_fetal_risk',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%203.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%203.png',
         evidenceData: {
           type: 'flow',
           title: 'Cascada de Riesgo Patológico Gestacional (NRC, 2002)',
@@ -163,7 +163,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'El traslado clínico es inadmisible: someter a mujeres gestantes y futuros neonatos a técnicas con más del 99% de letalidad y fallas multiorgánicas viola el principio ético primario de no maleficencia.',
         evidenceSummary: 'Las investigaciones animales demuestran que las técnicas actuales arrastran desregulaciones genómicas impredecibles que impiden garantizar un embarazo seguro y un desarrollo infantil sano.',
         evidenceGraphicType: 'clinical_unjustified',
-        mediaUrl: 'https://images.unsplash.com/photo-1516549655169-df83a0774514?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%205.png',
         evidenceData: {
           type: 'comparison',
           title: 'Balance Riesgo-Beneficio en Reproducción Asistida Humana',
@@ -204,7 +204,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'Tachibana et al. (Cell, 2013) lograron líneas madre embrionarias humanas introduciendo núcleos adultos en óvulos enucleados hasta etapa de blastocisto, destruyéndolos.',
         evidenceSummary: 'Aunque validó el avance de reprogramación somática humana, visibilizó la objeción insalvable: crear embriones humanos con el fin deliberado de desmantelarlos.',
         evidenceGraphicType: 'blastocyst_destruction',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%204.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%204.png',
         evidenceData: {
           type: 'flow',
           title: 'Procedimiento SCNT Humano (Tachibana et al., Cell 2013)',
@@ -256,7 +256,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'En 2006, Shinya Yamanaka reprogramó fibroblastos adultos mediante 4 factores de transcripción (Oct4, Sox2, Klf4, c-Myc) obteniendo células pluripotentes inducidas (iPSC).',
         evidenceSummary: 'Las iPSC ofrecen el mismo potencial biomédico regenerativo y de modelado de enfermedades que las embrionarias, sin vulnerar dilema ético alguno ni requerir óvulos.',
         evidenceGraphicType: 'yamanaka_ipsc',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%206.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%206.png',
         evidenceData: {
           type: 'timeline',
           title: 'Evolución Científica Hacia la Pluripotencia sin Embriones',
@@ -350,7 +350,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'El individuo clonado nacería cargando con una biografía prefabricada, sometido al juicio asfixiante de no defraudar la memoria del original.',
         evidenceSummary: 'Bioéticamente, viola el principio de alteridad y el imperativo categórico: la persona nacida se convierte en un instrumento psicológico de consuelo familiar.',
         evidenceGraphicType: 'autonomy_violation',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%208.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%208.png',
         evidenceData: {
           type: 'infographic',
           title: 'Violación del Principio de Autonomía Biográfica',
@@ -376,7 +376,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La Declaración Universal sobre el Genoma Humano de la UNESCO (1997), Art. 2, manda no reducir a los individuos a sus rasgos genéticos y respetar su singularidad.',
         evidenceSummary: 'El Art. 3 complementa que el genoma evoluciona bajo factores biológicos y ambientales diversos; la persona es un sujeto moral irrepetible.',
         evidenceGraphicType: 'unesco_charter',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%209.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%209.png',
         evidenceData: {
           type: 'timeline',
           title: 'Declaración Universal UNESCO sobre el Genoma Humano',
@@ -402,7 +402,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'Nadie puede nacer como un producto prediseñado para satisfacer el anhelo de terceros o sustituir a alguien ausente; el ser humano debe ser acogido por sí mismo con plena autonomía de futuro.',
         evidenceSummary: 'La doctrina de derechos humanos establece que la persona es un fin en sí misma (imperativo bioético kantiano); la clonación procreativa degrada el nacimiento a un acto de replicación utilitaria.',
         evidenceGraphicType: 'non_commodification_identity',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%2010.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%2010.png',
         evidenceData: {
           type: 'infographic',
           title: 'Protección de la Individualidad y Alteridad Humana',
@@ -443,7 +443,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'En Colombia, el Art. 133 de la Ley 599 de 2000 ("Repetibilidad del ser humano") castiga la clonación con penas de prisión de 32 a 108 meses.',
         evidenceSummary: 'Asimismo, el Art. 11 de la UNESCO (1997) condena expresamente la clonación reproductiva, y el Art. 13 recuerda la responsabilidad social indelegable de los investigadores.',
         evidenceGraphicType: 'legal_sanction',
-        mediaUrl: 'https://images.unsplash.com/photo-1589829545856-d10d557cf95f?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%207.png',
         evidenceData: {
           type: 'comparison',
           title: 'Tipificación Jurídica y Responsabilidad Penal',
@@ -469,7 +469,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La International Society for Stem Cell Research (ISSCR, 2025 v1.2) ubica la transferencia e implantación de embriones humanos reprogramados en la Categoría 3B.',
         evidenceSummary: 'Incluso la comunidad científica pionera en reprogramación nuclear excluye de forma unánime cualquier aplicación reproductiva en el ser humano.',
         evidenceGraphicType: 'isscr_classification',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%2011.png?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%2011.png',
         evidenceData: {
           type: 'comparison',
           title: 'Directrices Globales ISSCR 2025 para Células Madre',
@@ -496,7 +496,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La OMS (2025) advierte que un solo ciclo de fecundación in vitro puede superar el doble del ingreso anual del hogar medio; la clonación multiplicaría esta brecha exponencialmente.',
         evidenceSummary: 'Como denunció el documental "Clone Inc." (2006), el interés corporativo por patentar biotecnologías reproductivas busca transformar la progenie humana en producto mercantil.',
         evidenceGraphicType: 'who_market_inequality',
-        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%2012.jpg?raw=true',
+        mediaUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/imagen%2012.jpg',
         evidenceData: {
           type: 'bar',
           title: 'Acceso Sanitario Reproductivo vs Costos Tecnológicos (OMS 2025)',

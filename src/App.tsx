@@ -37,44 +37,17 @@ export default function App() {
     setThemeMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  // Keep all edited information, images, and videos preserved from localStorage if available,
-  // while falling back to enriched INITIAL_MOTIVES with high-resolution public media links.
-  const [motives] = useState<MainMotive[]>(() => {
-    const cached = localStorage.getItem('oicrv_motives_data');
-    if (cached) {
-      try {
-        const parsed = JSON.parse(cached);
-        if (Array.isArray(parsed) && parsed.length === 4 && parsed.every((m: MainMotive) => m.subSlides?.length >= 4)) {
-          return parsed.map((m: MainMotive, mIdx: number) => {
-            const initM = INITIAL_MOTIVES[mIdx];
-            return {
-              ...m,
-              subSlides: m.subSlides.map((s: SubSlide, sIdx: number) => {
-                const initS = initM?.subSlides[sIdx];
-                return {
-                  ...s,
-                  mediaUrl: s.mediaUrl && s.mediaUrl.trim().length > 0 ? s.mediaUrl : initS?.mediaUrl,
-                };
-              }),
-            };
-          });
-        }
-      } catch (e) {
-        console.error('Failed to parse cached motives', e);
-      }
-    }
-    return INITIAL_MOTIVES;
-  });
+  // Compiled authoritative database directly sourced from debateData.ts
+  // This guarantees permanent persistence of all texts, arguments, and public media across all devices and shared links
+  const motives: MainMotive[] = INITIAL_MOTIVES;
+  const speakersData: Record<string, Speaker> = SPEAKERS;
 
-  const [speakersData] = useState<Record<string, Speaker>>(() => {
-    const cached = localStorage.getItem('oicrv_speakers_data');
-    if (cached) {
-      try {
-        return JSON.parse(cached);
-      } catch (e) {}
-    }
-    return SPEAKERS;
-  });
+  useEffect(() => {
+    try {
+      localStorage.removeItem('oicrv_motives_data');
+      localStorage.removeItem('oicrv_speakers_data');
+    } catch {}
+  }, []);
 
   // selectedMotiveId: 0 = Central Organization Globe, 1 to 4 = Main Motives
   const [selectedMotiveId, setSelectedMotiveId] = useState<number>(0);

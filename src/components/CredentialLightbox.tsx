@@ -8,6 +8,7 @@ import {
   Maximize2,
   X
 } from 'lucide-react';
+import { formatMediaUrl } from '../utils/mediaUtils';
 
 interface CredentialLightboxProps {
   speaker: Speaker | null;
@@ -123,7 +124,7 @@ export const CredentialLightbox: React.FC<CredentialLightboxProps> = ({
                 >
                   {speaker.photoUrl ? (
                     <img
-                      src={speaker.photoUrl}
+                      src={formatMediaUrl(speaker.photoUrl)}
                       alt={speaker.name}
                       className="w-full h-full object-cover"
                     />
@@ -217,7 +218,7 @@ export const CredentialLightbox: React.FC<CredentialLightboxProps> = ({
               <span>Cerrar foto</span>
             </button>
             <img
-              src={speaker.photoUrl || ''}
+              src={formatMediaUrl(speaker.photoUrl) || ''}
               alt={speaker.name}
               className="max-h-[80vh] max-w-full rounded-2xl object-contain shadow-2xl border-2 border-cyan-500/40"
             />

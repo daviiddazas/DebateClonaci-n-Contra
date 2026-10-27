@@ -8,6 +8,8 @@ import {
   X
 } from 'lucide-react';
 
+import { formatMediaUrl, isYoutubeUrl, isDirectVideoUrl, getYoutubeEmbedUrl } from '../utils/mediaUtils';
+
 interface SlideViewerProps {
   currentMotive: MainMotive;
   currentSlide: SubSlide;
@@ -27,41 +29,13 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
   onOpenLightbox,
   onClosePanel,
 }) => {
-  // Helper to parse YouTube embeds
-  const isYoutube = (url?: string) => {
-    if (!url) return false;
-    return url.includes('youtube.com') || url.includes('youtu.be');
-  };
+  const isYoutube = (url?: string) => isYoutubeUrl(url);
+  const isDirectVideo = (url?: string) => isDirectVideoUrl(url);
+  const getYoutubeEmbed = (url: string) => getYoutubeEmbedUrl(url, false);
 
-  const isDirectVideo = (url?: string) => {
-    if (!url) return false;
-    return url.endsWith('.mp4') || url.endsWith('.webm') || url.endsWith('.mov') || url.includes('vimeo.com');
-  };
-
-  const getYoutubeEmbed = (url: string) => {
-    try {
-      if (url.includes('youtube.com/watch?v=')) {
-        const id = url.split('v=')[1]?.split('&')[0];
-        return `https://www.youtube.com/embed/${id}?rel=0`;
-      }
-      if (url.includes('youtu.be/')) {
-        const id = url.split('youtu.be/')[1]?.split('?')[0];
-        return `https://www.youtube.com/embed/${id}?rel=0`;
-      }
-      if (url.includes('youtube.com/shorts/')) {
-        const id = url.split('shorts/')[1]?.split('?')[0];
-        return `https://www.youtube.com/embed/${id}?rel=0`;
-      }
-      if (url.includes('youtube.com/embed/')) {
-        return url;
-      }
-    } catch (e) {
-      return url;
-    }
-    return url;
-  };
-
-  const hasMedia = Boolean(currentSlide.mediaUrl && currentSlide.mediaUrl.trim().length > 0);
+  const rawMedia = currentSlide.mediaUrl;
+  const formattedMedia = formatMediaUrl(rawMedia);
+  const hasMedia = Boolean(formattedMedia && formattedMedia.trim().length > 0);
 
   const cardBg = isDarkMode
     ? 'bg-slate-900/95 border-slate-700 text-slate-100 shadow-2xl'
@@ -186,11 +160,11 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
           {/* Media Display Space (Embedded YouTube, Direct Video, Image or Scientific Graphic) */}
           <div className="relative rounded-2xl overflow-hidden border border-slate-300 dark:border-slate-700/60 bg-black/40 min-h-[260px] flex items-center justify-center flex-1">
             {hasMedia ? (
-              isYoutube(currentSlide.mediaUrl) ? (
+              isYoutube(formattedMedia) ? (
                 /* EMBEDDED YOUTUBE VIDEO PLAYER */
                 <div className="w-full h-full relative aspect-video min-h-[260px]">
                   <iframe
-                    src={getYoutubeEmbed(currentSlide.mediaUrl!)}
+                    src={getYoutubeEmbed(formattedMedia)}
                     title={currentSlide.title}
                     className="w-full h-full rounded-xl"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
@@ -206,11 +180,11 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
                     <span>Expandir</span>
                   </button>
                 </div>
-              ) : isDirectVideo(currentSlide.mediaUrl) ? (
+              ) : isDirectVideo(formattedMedia) ? (
                 /* DIRECT VIDEO */
                 <div className="w-full relative">
                   <video
-                    src={currentSlide.mediaUrl}
+                    src={formattedMedia}
                     controls
                     className="w-full max-h-64 rounded-xl object-contain"
                   />
@@ -229,7 +203,7 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
                   className="w-full h-full relative group cursor-pointer flex items-center justify-center"
                 >
                   <img
-                    src={currentSlide.mediaUrl}
+                    src={formattedMedia}
                     alt={currentSlide.title}
                     className="w-full h-64 sm:h-72 object-cover rounded-xl transition-transform duration-300 group-hover:scale-[1.01]"
                   />

@@ -3,6 +3,8 @@ import { SubSlide, MainMotive } from '../types';
 import { EvidenceGraphics } from './EvidenceGraphics';
 import { ArrowLeft, Maximize2 } from 'lucide-react';
 
+import { formatMediaUrl, isYoutubeUrl, isDirectVideoUrl, getYoutubeEmbedUrl } from '../utils/mediaUtils';
+
 interface EvidenceLightboxProps {
   isOpen: boolean;
   onClose: () => void;
@@ -34,42 +36,10 @@ export const EvidenceLightbox: React.FC<EvidenceLightboxProps> = ({
 
   if (!isOpen) return null;
 
-  const isVideoUrl = (url?: string) => {
-    if (!url) return false;
-    return (
-      url.includes('youtube.com') ||
-      url.includes('youtu.be') ||
-      url.includes('vimeo.com') ||
-      url.endsWith('.mp4') ||
-      url.endsWith('.webm') ||
-      url.endsWith('.mov')
-    );
-  };
-
-  const getYoutubeEmbed = (url: string) => {
-    try {
-      if (url.includes('youtube.com/watch?v=')) {
-        const id = url.split('v=')[1]?.split('&')[0];
-        return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-      }
-      if (url.includes('youtu.be/')) {
-        const id = url.split('youtu.be/')[1]?.split('?')[0];
-        return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-      }
-      if (url.includes('youtube.com/shorts/')) {
-        const id = url.split('shorts/')[1]?.split('?')[0];
-        return `https://www.youtube.com/embed/${id}?autoplay=1&rel=0`;
-      }
-      if (url.includes('youtube.com/embed/')) {
-        return `${url}?autoplay=1&rel=0`;
-      }
-    } catch (e) {
-      return url;
-    }
-    return url;
-  };
-
-  const hasCustomMedia = Boolean(slide.mediaUrl && slide.mediaUrl.trim().length > 0);
+  const formattedMedia = formatMediaUrl(slide.mediaUrl);
+  const isYoutube = isYoutubeUrl(formattedMedia);
+  const isDirectVideo = isDirectVideoUrl(formattedMedia);
+  const hasCustomMedia = Boolean(formattedMedia && formattedMedia.trim().length > 0);
 
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 animate-in fade-in duration-200">
@@ -117,26 +87,24 @@ export const EvidenceLightbox: React.FC<EvidenceLightboxProps> = ({
         <div className="flex-1 overflow-y-auto p-4 sm:p-6 flex flex-col items-center justify-center">
           {hasCustomMedia ? (
             <div className="w-full flex items-center justify-center rounded-2xl overflow-hidden bg-black/60 min-h-[380px]">
-              {isVideoUrl(slide.mediaUrl) ? (
-                slide.mediaUrl?.includes('youtube') || slide.mediaUrl?.includes('youtu.be') ? (
-                  <iframe
-                    src={getYoutubeEmbed(slide.mediaUrl!)}
-                    className="w-full aspect-video max-h-[75vh] rounded-xl"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    title={slide.title}
-                  />
-                ) : (
-                  <video
-                    src={slide.mediaUrl}
-                    controls
-                    autoPlay
-                    className="w-full max-h-[75vh] rounded-xl"
-                  />
-                )
+              {isYoutube ? (
+                <iframe
+                  src={getYoutubeEmbedUrl(formattedMedia, true)}
+                  className="w-full aspect-video max-h-[75vh] rounded-xl"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                  title={slide.title}
+                />
+              ) : isDirectVideo ? (
+                <video
+                  src={formattedMedia}
+                  controls
+                  autoPlay
+                  className="w-full max-h-[75vh] rounded-xl"
+                />
               ) : (
                 <img
-                  src={slide.mediaUrl}
+                  src={formattedMedia}
                   alt={slide.title}
                   className="w-full max-h-[75vh] object-contain rounded-xl"
                 />

@@ -49,9 +49,15 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     onCanvasClickEmpty,
   };
 
-  const spriteRefs = useRef<Map<string, { sprite: THREE.Sprite; canvas: HTMLCanvasElement; texture: THREE.CanvasTexture }>>(new Map());
+  const spriteRefs = useRef<Map<string, { sprite: THREE.Sprite; canvas: HTMLCanvasElement; texture: THREE.CanvasTexture; redraw: (isDarkTheme: boolean) => void }>>(new Map());
   const clickableObjects = useRef<THREE.Object3D[]>([]);
   const isTransitioningRef = useRef<boolean>(true);
+
+  // Scene & lighting references for live theme switching
+  const sceneRef = useRef<THREE.Scene | null>(null);
+  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
+  const hemiLightRef = useRef<THREE.HemisphereLight | null>(null);
+  const keyLightRef = useRef<THREE.DirectionalLight | null>(null);
 
   // Conduits registry
   const subConduitsRef = useRef<Map<string, { tube: THREE.Mesh; pulse: THREE.Mesh; curve: THREE.CatmullRomCurve3 }>>(new Map());
@@ -61,6 +67,33 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
   useEffect(() => {
     isTransitioningRef.current = true;
   }, [selectedMotiveId, selectedSubSlideIndex]);
+
+  // Handle dynamic light / dark theme adaptation for Three.js background, lighting, and sprites
+  useEffect(() => {
+    const isDark = themeMode === 'dark';
+    const bgColor = isDark ? 0x070b14 : 0xf1f5f9;
+    if (sceneRef.current) {
+      sceneRef.current.background = new THREE.Color(bgColor);
+      if (sceneRef.current.fog) {
+        sceneRef.current.fog.color = new THREE.Color(bgColor);
+      }
+    }
+    if (rendererRef.current) {
+      rendererRef.current.toneMappingExposure = isDark ? 1.2 : 1.0;
+    }
+    if (hemiLightRef.current) {
+      hemiLightRef.current.color.setHex(isDark ? 0x1e293b : 0xffffff);
+      hemiLightRef.current.groundColor.setHex(isDark ? 0x090d16 : 0xcfd8dc);
+      hemiLightRef.current.intensity = isDark ? 1.2 : 1.0;
+    }
+    if (keyLightRef.current) {
+      keyLightRef.current.intensity = isDark ? 2.4 : 2.6;
+    }
+    spriteRefs.current.forEach((item) => {
+      item.redraw(isDark);
+      item.texture.needsUpdate = true;
+    });
+  }, [themeMode]);
 
   useEffect(() => {
     const container = mountRef.current;
@@ -77,6 +110,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     })();
 
     const scene = new THREE.Scene();
+    sceneRef.current = scene;
     const isDark = stateRef.current.themeMode === 'dark';
     const bgColor = isDark ? 0x070b14 : 0xf1f5f9;
     scene.background = new THREE.Color(bgColor);
@@ -100,6 +134,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     renderer.toneMappingExposure = isDark ? 1.2 : 1.0;
     renderer.shadowMap.enabled = !isSoftwareGl;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+    rendererRef.current = renderer;
 
     container.appendChild(renderer.domElement);
     renderer.domElement.style.cursor = 'grab';
@@ -129,6 +164,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
     keyLight.shadow.mapSize.height = 1024;
     keyLight.shadow.bias = -0.0005;
     scene.add(keyLight);
+    keyLightRef.current = keyLight;
 
     const fillLight = new THREE.DirectionalLight(isDark ? 0x38bdf8 : 0x93c5fd, isDark ? 1.1 : 0.85);
     fillLight.position.set(-20, 10, -15);
@@ -140,6 +176,7 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
       isDark ? 1.2 : 1.0
     );
     scene.add(hemiLight);
+    hemiLightRef.current = hemiLight;
 
     const gridHelper = new THREE.GridHelper(80, 50, isDark ? 0x0284c7 : 0x0369a1, isDark ? 0x1e293b : 0xe2e8f0);
     gridHelper.position.y = -6;
@@ -218,7 +255,12 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
 
       const sprite = new THREE.Sprite(spriteMaterial);
       sprite.scale.set(scaleX, scaleY, 1);
-      spriteRefs.current.set(textId, { sprite, canvas, texture });
+      spriteRefs.current.set(textId, {
+        sprite,
+        canvas,
+        texture,
+        redraw: (isDarkTheme: boolean) => drawCanvas(mainText, badgeText, isDarkTheme),
+      });
       return sprite;
     };
 
@@ -467,18 +509,8 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
         );
         subHit.userData = { isSubSlide: true, motiveId: mot.id, subIndex: sub.subIndex };
         subGroup.add(subHit);
+        // Sub-node hit area (retains clickability without cluttering the 3D space with text tags)
         clickableObjects.current.push(subHit);
-
-        const subSprite = createTextSprite(
-          `sub-${mot.id}-${sub.subIndex}`,
-          sub.title,
-          `${mot.id}.${sub.subIndex}`,
-          mot.accentColor,
-          4.4,
-          1.5
-        );
-        subSprite.position.set(0, 1.8, 0);
-        subGroup.add(subSprite);
 
         motiveGroup.add(subGroup);
         subNodeGroups.set(`${mot.id}-${sub.subIndex}`, subGroup);
@@ -728,6 +760,11 @@ export const ThreeCanvas: React.FC<ThreeCanvasProps> = ({
       clickableObjects.current = [];
       subConduitsRef.current.clear();
       masterConduitsRef.current.clear();
+      spriteRefs.current.clear();
+      sceneRef.current = null;
+      rendererRef.current = null;
+      hemiLightRef.current = null;
+      keyLightRef.current = null;
     };
   }, []);
 
