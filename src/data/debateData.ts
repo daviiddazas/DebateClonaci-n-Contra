@@ -84,7 +84,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'En el experimento histórico de Dolly (1996), se requirieron 277 embriones clonados para obtener tan solo 1 nacimiento vivo (0.36% de eficiencia global).',
         evidenceSummary: 'De 277 embriones reconstruidos por SCNT, el 99.64% se detuvo en desarrollo o pereció intrauterinamente con fallas multiorgánicas.',
         evidenceGraphicType: 'dolly_efficiency',
-        mediaUrl: 'https://images.unsplash.com/photo-1579154204601-01588f351e67?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%201.png?raw=true',
         evidenceData: {
           type: 'comparison',
           title: 'Eficiencia Reproductiva: Oveja Dolly (1996)',
