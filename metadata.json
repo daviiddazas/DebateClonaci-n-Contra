@@ -1,0 +1,6 @@
+{
+  "name": "OICRV - Debate Académico Clonación Humana",
+  "description": "Plataforma 3D interactiva de soporte para el debate académico contra la clonación humana - Organización Internacional de Ciencia Responsable por la Vida.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
