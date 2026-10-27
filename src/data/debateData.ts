@@ -13,7 +13,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Universidad de Oxford / Instituto Roslin de Investigación',
     diplomaText: 'Acreditación Oficial en Transferencia Nuclear Somática (SCNT), Embriología Médica Comparada y Análisis de Riesgos Reproductivos.',
     signatureTitle: 'Director de Riesgos Biotecnológicos',
-    photoUrl: 'https://images.unsplash.com/photo-1537368910025-700350fe46c7?w=500&auto=format&fit=crop&q=80',
+    photoUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/Credencial%20Daza.jpeg?raw=true',
   },
   laura: {
     id: 'laura',
@@ -27,7 +27,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Universidad de Cambridge / Instituto Wellcome Trust',
     diplomaText: 'Cátedra de Investigación en Biología del Desarrollo Celular, Modelos de Pluripotencia Inducida (iPSC) y Bioética de Cultivos Embrionarios.',
     signatureTitle: 'Directora de Investigación Biomédica',
-    photoUrl: 'https://images.unsplash.com/photo-1594824813576-0eef7f052554?w=500&auto=format&fit=crop&q=80',
+    photoUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/Credencial%20villanueva.jpeg?raw=true',
   },
   fabian: {
     id: 'fabian',
@@ -41,7 +41,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Universidad Sorbona de París / Instituto de Bioética Global',
     diplomaText: 'Especialista en Derechos Humanos de Tercera Generación, Filosofía del Genoma, Autonomía Biográfica y Normativa Internacional UNESCO.',
     signatureTitle: 'Director de Ética y Asuntos Sociales',
-    photoUrl: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=500&auto=format&fit=crop&q=80',
+    photoUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/Credencial%20Galvis.jpeg?raw=true',
   },
   consejo: {
     id: 'consejo',
