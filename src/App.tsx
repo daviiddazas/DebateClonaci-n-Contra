@@ -37,17 +37,43 @@ export default function App() {
     setThemeMode((prev) => (prev === 'dark' ? 'light' : 'dark'));
   };
 
-  // Compiled authoritative database directly sourced from debateData.ts
-  // This guarantees permanent persistence of all texts, arguments, and public media across all devices and shared links
-  const motives: MainMotive[] = INITIAL_MOTIVES;
+  // Authoritative motives state with local editing capability
+  // Changes are stored in state and persisted in localStorage so user can edit before finalizing
+  const [motives, setMotives] = useState<MainMotive[]>(() => {
+    try {
+      const saved = localStorage.getItem('oicrv_custom_motives');
+      if (saved) {
+        const parsed = JSON.parse(saved);
+        if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+      }
+    } catch {}
+    return INITIAL_MOTIVES;
+  });
   const speakersData: Record<string, Speaker> = SPEAKERS;
 
   useEffect(() => {
     try {
-      localStorage.removeItem('oicrv_motives_data');
-      localStorage.removeItem('oicrv_speakers_data');
+      localStorage.setItem('oicrv_custom_motives', JSON.stringify(motives));
     } catch {}
-  }, []);
+  }, [motives]);
+
+  const handleUpdateSlide = (motiveId: number, subIndex: number, updatedFields: Partial<SubSlide>) => {
+    setMotives((prevMotives) =>
+      prevMotives.map((m) => {
+        if (m.id !== motiveId) return m;
+        return {
+          ...m,
+          subSlides: m.subSlides.map((s) => {
+            if (s.subIndex !== subIndex) return s;
+            return {
+              ...s,
+              ...updatedFields,
+            };
+          }),
+        };
+      })
+    );
+  };
 
   // selectedMotiveId: 0 = Central Organization Globe, 1 to 4 = Main Motives
   const [selectedMotiveId, setSelectedMotiveId] = useState<number>(0);
@@ -133,6 +159,7 @@ export default function App() {
                 onSelectSubSlide={handleSelectSubSlide}
                 onOpenLightbox={() => setIsLightboxOpen(true)}
                 onClosePanel={() => setIsWindowOpen(false)}
+                onUpdateSlide={handleUpdateSlide}
               />
             )}
           </div>
