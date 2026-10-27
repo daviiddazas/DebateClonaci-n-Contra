@@ -256,7 +256,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'En 2006, Shinya Yamanaka reprogramó fibroblastos adultos mediante 4 factores de transcripción (Oct4, Sox2, Klf4, c-Myc) obteniendo células pluripotentes inducidas (iPSC).',
         evidenceSummary: 'Las iPSC ofrecen el mismo potencial biomédico regenerativo y de modelado de enfermedades que las embrionarias, sin vulnerar dilema ético alguno ni requerir óvulos.',
         evidenceGraphicType: 'yamanaka_ipsc',
-        mediaUrl: 'https://images.unsplash.com/photo-1530497610245-94d3c16cda28?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%206.png?raw=true',
         evidenceData: {
           type: 'timeline',
           title: 'Evolución Científica Hacia la Pluripotencia sin Embriones',
@@ -283,7 +283,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'Evaluar el origen de las células y los procedimientos experimentales garantiza que el progreso de la medicina regenerativa no sacrifique la vida incipiente como mero recurso descartable.',
         evidenceSummary: 'La controversia bioética exige ponderar si es legítimo generar y destruir embriones humanos cuando existen métodos de reprogramación celular directa que respetan la integridad ética de la investigación.',
         evidenceGraphicType: 'means_ends_ethics',
-        mediaUrl: 'https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://www.youtube.com/watch?v=Q9-4SMGiKnE',
         evidenceData: {
           type: 'comparison',
           title: 'Juicio Ético sobre Medios y Fines Experimentales',
@@ -324,7 +324,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La gata clonada "Cc" (Copy Cat, NHGRI) exhibió un patrón de pelaje y temperamento completamente disímiles a su donante por la inactivación aleatoria del cromosoma X.',
         evidenceSummary: 'Olsson et al. (2022) confirmaron en más de 1,000 perros clonados diferencias fenotípicas sustanciales. Un clon humano jamás sería la "copia" de nadie.',
         evidenceGraphicType: 'epigenetic_diversity',
-        mediaUrl: 'https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://www.youtube.com/watch?v=A0JKDOTkcog',
         evidenceData: {
           type: 'comparison',
           title: 'Divergencia Fenotípica y Epigenética en Clones',
@@ -350,7 +350,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'El individuo clonado nacería cargando con una biografía prefabricada, sometido al juicio asfixiante de no defraudar la memoria del original.',
         evidenceSummary: 'Bioéticamente, viola el principio de alteridad y el imperativo categórico: la persona nacida se convierte en un instrumento psicológico de consuelo familiar.',
         evidenceGraphicType: 'autonomy_violation',
-        mediaUrl: 'https://images.unsplash.com/photo-1485546246426-74dc88dec4d9?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%208.png?raw=true',
         evidenceData: {
           type: 'infographic',
           title: 'Violación del Principio de Autonomía Biográfica',
@@ -376,7 +376,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La Declaración Universal sobre el Genoma Humano de la UNESCO (1997), Art. 2, manda no reducir a los individuos a sus rasgos genéticos y respetar su singularidad.',
         evidenceSummary: 'El Art. 3 complementa que el genoma evoluciona bajo factores biológicos y ambientales diversos; la persona es un sujeto moral irrepetible.',
         evidenceGraphicType: 'unesco_charter',
-        mediaUrl: 'https://images.unsplash.com/photo-1541872703-74c5e44368f9?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%209.png?raw=true',
         evidenceData: {
           type: 'timeline',
           title: 'Declaración Universal UNESCO sobre el Genoma Humano',
@@ -402,7 +402,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'Nadie puede nacer como un producto prediseñado para satisfacer el anhelo de terceros o sustituir a alguien ausente; el ser humano debe ser acogido por sí mismo con plena autonomía de futuro.',
         evidenceSummary: 'La doctrina de derechos humanos establece que la persona es un fin en sí misma (imperativo bioético kantiano); la clonación procreativa degrada el nacimiento a un acto de replicación utilitaria.',
         evidenceGraphicType: 'non_commodification_identity',
-        mediaUrl: 'https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%2010.png?raw=true',
         evidenceData: {
           type: 'infographic',
           title: 'Protección de la Individualidad y Alteridad Humana',
@@ -469,7 +469,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La International Society for Stem Cell Research (ISSCR, 2025 v1.2) ubica la transferencia e implantación de embriones humanos reprogramados en la Categoría 3B.',
         evidenceSummary: 'Incluso la comunidad científica pionera en reprogramación nuclear excluye de forma unánime cualquier aplicación reproductiva en el ser humano.',
         evidenceGraphicType: 'isscr_classification',
-        mediaUrl: 'https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%2011.png?raw=true',
         evidenceData: {
           type: 'comparison',
           title: 'Directrices Globales ISSCR 2025 para Células Madre',
@@ -496,7 +496,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La OMS (2025) advierte que un solo ciclo de fecundación in vitro puede superar el doble del ingreso anual del hogar medio; la clonación multiplicaría esta brecha exponencialmente.',
         evidenceSummary: 'Como denunció el documental "Clone Inc." (2006), el interés corporativo por patentar biotecnologías reproductivas busca transformar la progenie humana en producto mercantil.',
         evidenceGraphicType: 'who_market_inequality',
-        mediaUrl: 'https://images.unsplash.com/photo-1526256262350-7da7584cf5eb?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%2012.jpg?raw=true',
         evidenceData: {
           type: 'bar',
           title: 'Acceso Sanitario Reproductivo vs Costos Tecnológicos (OMS 2025)',
@@ -522,7 +522,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'La capacidad biotecnológica debe subordinarse a la deliberación bioética multilateral: el "poder hacer" técnico jamás equivale al "deber hacer" en el orden moral y jurídico internacional.',
         evidenceSummary: 'La defensa de la vida humana exige límites inviolables frente a la eugenesia tecnocrática, garantizando que el desarrollo científico sirva a la dignidad de la humanidad y no a experimentos unilaterales.',
         evidenceGraphicType: 'human_rights_priority',
-        mediaUrl: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://www.youtube.com/watch?v=k0jsSApqy_A',
         evidenceData: {
           type: 'timeline',
           title: 'Supremacía de los Derechos Humanos sobre la Técnica',
