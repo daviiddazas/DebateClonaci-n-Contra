@@ -109,7 +109,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'En el primer protocolo de Liao et al. (Nature Comm., 2024), 484 embriones implantados en 96 macacas receptoras produjeron un solo nacido que murió en menos de 23 horas.',
         evidenceSummary: 'Tras optimizar con reemplazo de trofoblasto placentario, se activaron 113 embriones y se logró 1 cría sana: una tasa de éxito de solo 0.88% (1 en 113).',
         evidenceGraphicType: 'liao_primate_study',
-        mediaUrl: 'https://images.unsplash.com/photo-1540573133985-87b6da6d54a9?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%202.png?raw=true',
         evidenceData: {
           type: 'bar',
           title: 'Estudio SCNT en Macacos Rhesus (Liao et al., 2024)',
@@ -136,7 +136,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'El National Research Council (NRC, 2002) alertó sobre desregulaciones placentarias graves, hemorragias y riesgos perinatales severos para la madre.',
         evidenceSummary: 'En perros, Olsson et al. (2022) lograron >2% en más de 1000 caninos pero con divergencias fenotípicas. Trasladar tales incertidumbres a seres humanos es bioéticamente inaceptable.',
         evidenceGraphicType: 'maternal_fetal_risk',
-        mediaUrl: 'https://images.unsplash.com/photo-1584515979956-d9f6e5d09982?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%203.png?raw=true',
         evidenceData: {
           type: 'flow',
           title: 'Cascada de Riesgo Patológico Gestacional (NRC, 2002)',
@@ -204,7 +204,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'Tachibana et al. (Cell, 2013) lograron líneas madre embrionarias humanas introduciendo núcleos adultos en óvulos enucleados hasta etapa de blastocisto, destruyéndolos.',
         evidenceSummary: 'Aunque validó el avance de reprogramación somática humana, visibilizó la objeción insalvable: crear embriones humanos con el fin deliberado de desmantelarlos.',
         evidenceGraphicType: 'blastocyst_destruction',
-        mediaUrl: 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://github.com/daviiddazas/Imagenes3/blob/main/imagen%204.png?raw=true',
         evidenceData: {
           type: 'flow',
           title: 'Procedimiento SCNT Humano (Tachibana et al., Cell 2013)',
@@ -231,7 +231,7 @@ export const INITIAL_MOTIVES: MainMotive[] = [
         keySupportPoint: 'Como argumenta Justo Aznar (2013), producir embriones exclusivamente para su destrucción ulterior plantea una contradicción ética insubsanable.',
         evidenceSummary: 'El embrión no es un conglomerado biológico inerte sino un organismo biológico individual con potencialidad humana inherente que exige protección frente a la explotación utilitarista.',
         evidenceGraphicType: 'moral_status_debate',
-        mediaUrl: 'https://images.unsplash.com/photo-1507668077129-56e32842fceb?w=1200&auto=format&fit=crop&q=80',
+        mediaUrl: 'https://www.youtube.com/watch?v=jK5rXues6Ig',
         evidenceData: {
           type: 'comparison',
           title: 'Debate Bioético sobre la Condición del Embrión',
