@@ -51,10 +51,16 @@ export default function App() {
   });
   const speakersData: Record<string, Speaker> = SPEAKERS;
 
-  const [isEditingLocked, setIsEditingLocked] = useState<boolean>(() => {
-    return localStorage.getItem('oicrv_compilation_locked') === 'true';
-  });
+  // Editing unlocked by user request
+  const [isEditingLocked, setIsEditingLocked] = useState<boolean>(false);
   const [compiledSuccessToast, setCompiledSuccessToast] = useState<boolean>(false);
+
+  // Clear previous lock flag on mount so editing is fully available
+  useEffect(() => {
+    try {
+      localStorage.removeItem('oicrv_compilation_locked');
+    } catch {}
+  }, []);
 
   useEffect(() => {
     try {
@@ -62,32 +68,12 @@ export default function App() {
     } catch {}
   }, [motives]);
 
-  // Auto-sync client changes on mount: bake them permanently into compiledMotives.json via backend API
-  useEffect(() => {
-    const custom = localStorage.getItem('oicrv_custom_motives');
-    if (custom) {
-      try {
-        const parsed = JSON.parse(custom);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          fetch('/api/compile-motives', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ motives: parsed }),
-          })
-            .then((r) => r.json())
-            .then((data) => {
-              if (data.success) {
-                localStorage.setItem('oicrv_compilation_locked', 'true');
-                setIsEditingLocked(true);
-                setCompiledSuccessToast(true);
-                setTimeout(() => setCompiledSuccessToast(false), 5000);
-              }
-            })
-            .catch(() => {});
-        }
-      } catch {}
-    }
-  }, []);
+  const handleUnlockEditing = () => {
+    try {
+      localStorage.removeItem('oicrv_compilation_locked');
+    } catch {}
+    setIsEditingLocked(false);
+  };
 
   const handleCompileAndLock = async () => {
     try {
@@ -213,6 +199,7 @@ export default function App() {
                 onUpdateSlide={handleUpdateSlide}
                 isEditingAllowed={!isEditingLocked}
                 onCompileAndLock={handleCompileAndLock}
+                onUnlockEditing={handleUnlockEditing}
               />
             )}
           </div>

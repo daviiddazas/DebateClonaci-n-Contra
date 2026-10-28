@@ -31,6 +31,7 @@ interface SlideViewerProps {
   onUpdateSlide?: (motiveId: number, subIndex: number, updatedFields: Partial<SubSlide>) => void;
   isEditingAllowed?: boolean;
   onCompileAndLock?: () => void;
+  onUnlockEditing?: () => void;
 }
 
 export const SlideViewer: React.FC<SlideViewerProps> = ({
@@ -44,6 +45,7 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
   onUpdateSlide,
   isEditingAllowed = true,
   onCompileAndLock,
+  onUnlockEditing,
 }) => {
   // Editing state
   const [isEditing, setIsEditing] = useState<boolean>(false);
@@ -174,10 +176,23 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
           )}
 
           {!isEditingAllowed ? (
-            <span className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 shadow-xs">
-              <Lock className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
-              <span>Contenido Fijo y Compilado</span>
-            </span>
+            <div className="flex items-center gap-2">
+              <span className="hidden sm:flex items-center gap-1.5 text-xs font-bold text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-800/90 px-3 py-1.5 rounded-xl border border-slate-300 dark:border-slate-700 shadow-xs">
+                <Lock className="w-3.5 h-3.5 text-cyan-600 dark:text-cyan-400" />
+                <span>Modo Lectura</span>
+              </span>
+              <button
+                onClick={() => {
+                  if (onUnlockEditing) onUnlockEditing();
+                  setIsEditing(true);
+                }}
+                className="flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-cyan-600 hover:bg-cyan-500 text-white font-extrabold text-xs shadow-md transition-all hover:scale-105 active:scale-95"
+                title="Habilitar edición de textos de nuevo"
+              >
+                <Edit3 className="w-3.5 h-3.5" />
+                <span>Editar Textos</span>
+              </button>
+            </div>
           ) : isEditing ? (
             <>
               <button
@@ -389,7 +404,9 @@ export const SlideViewer: React.FC<SlideViewerProps> = ({
                 <img
                   src={currentSpeaker.photoUrl}
                   alt={currentSpeaker.name}
-                  className="w-10 h-10 rounded-full object-cover border border-cyan-500/40 shadow-xs shrink-0"
+                  className={`w-10 h-10 rounded-full border border-cyan-500/40 shadow-xs shrink-0 ${
+                    currentSpeaker.id === 'consejo' ? 'object-contain p-0.5 bg-slate-950' : 'object-cover'
+                  }`}
                 />
               ) : (
                 <div className={`w-10 h-10 rounded-full bg-gradient-to-tr ${currentSpeaker.avatarColor} flex items-center justify-center text-white font-bold text-xs shrink-0`}>

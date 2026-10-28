@@ -56,7 +56,7 @@ export const SPEAKERS: Record<string, Speaker> = {
     university: 'Mesa Plenaria Internacional OICRV',
     diplomaText: 'Dictamen Colectivo Interdisciplinario sobre Implicaciones Jurídicas, Clínicas y Morales de la Clonación Reproductiva Humana.',
     signatureTitle: 'Consejo Científico y Ético OICRV',
-    photoUrl: 'https://raw.githubusercontent.com/daviiddazas/Imagenes3/main/Imagen%20portada.jpg',
+    photoUrl: '/assets/aistudio/logo_3abde976.png',
   },
 };
 

@@ -126,7 +126,7 @@ export const CredentialLightbox: React.FC<CredentialLightboxProps> = ({
                     <img
                       src={formatMediaUrl(speaker.photoUrl)}
                       alt={speaker.name}
-                      className="w-full h-full object-cover"
+                      className={`w-full h-full ${speaker.id === 'consejo' ? 'object-contain p-3 bg-slate-950' : 'object-cover'}`}
                     />
                   ) : (
                     <div className={`w-full h-full bg-gradient-to-tr ${speaker.avatarColor} flex flex-col items-center justify-center text-white p-4 text-center`}>

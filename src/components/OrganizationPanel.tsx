@@ -108,7 +108,13 @@ export const OrganizationPanel: React.FC<OrganizationPanelProps> = ({
             >
               <div>
                 <div className="flex items-center gap-3 mb-2.5">
-                  {spk.photoUrl ? (
+                  {spk.id === 'consejo' ? (
+                    <img
+                      src="/assets/aistudio/logo_3abde976.png"
+                      alt={spk.name}
+                      className="w-12 h-12 rounded-xl object-contain bg-slate-950 p-1 shadow-md shrink-0 border border-cyan-500/40"
+                    />
+                  ) : spk.photoUrl ? (
                     <img
                       src={formatMediaUrl(spk.photoUrl)}
                       alt={spk.name}
